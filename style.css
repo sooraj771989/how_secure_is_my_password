@@ -1,0 +1,77 @@
+body {
+     
+    font-size: 1em;
+     
+}
+
+.mb-2{
+  margin-bottom: 2rem;
+}
+
+.mb-1{
+  margin-bottom: 1rem;
+}
+
+input {
+  font-size: 3em;
+  line-height: 1.5em;
+  background: #fff;
+  background: rgba(255, 255, 255, .6);
+  box-sizing: border-box;
+  display: block;
+  height: 1.5em;
+  margin-top: 1em;
+  padding: 0;
+  text-align: center;
+  text-transform: none;
+  max-width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+label::after {
+    content: ":";
+}
+.title {
+  font-size: 5em;
+  line-height: .4444444444em;
+  padding-top: .4444444444em;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.result-time {
+  font-size: 3em;
+  line-height: 1em;
+  display: block;
+}
+
+.hsimp-time {
+    display: inline;
+    margin-left: 10px;
+}
+
+.hsimp-checks li {
+    list-style: none;
+}
+
+
+.hsimp-level {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 0.5s linear;
+  background-color: #fff;
+}
+.hsimp-level--bad,
+.hsimp-level--insecure {
+  background-color: #c63136;
+}
+.hsimp-level--ok {
+  background-color: #de7b46;
+}
+.hsimp-level--good {
+  background-color: #2f8249;
+}

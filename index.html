@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>How Secure is your password ?</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+<div>
+    <div class="text-center"><h2 class="title">HOW SECURE IS MY PASSWORD?</h2></div>
+    <div class="mb-2">
+    <input id="password-box" type="password" placeholder="Enter your password"/>
+    </div> 
+   <div class="text-center mb-1">
+    <div id="text-start" class="mb-1"></div>
+    <div id="password-time" class="result-time mb-1"></div>
+    <div id="text-end" class="mb-1"></div>
+   </div>
+
+    <ul id="password-checks" class="hsimp-checks"></ul>
+   
+
+</div>
+</body>
+    <script src="main.min.js"></script>
+    <script>
+        (function (doc) {
+            var passwordInput = doc.getElementById("password-box"),
+                timeDiv = doc.getElementById("password-time"),
+                textStart = doc.getElementById("text-start"),
+                textEnd = doc.getElementById("text-end"),
+                checksList = doc.getElementById("password-checks");
+
+            // Code to render the time returned by HSIMP
+            var renderTime = function (time, input) {
+                timeDiv.innerHTML = time || "";
+                textStart.innerHTML = time == '' ?'' : "It would take a computer about";
+                textEnd.innerHTML = time == '' ? '': "to crack your password";
+            };
+
+            // Code to output the checks returned by HSIMP
+            var renderChecks = function (checks, input) {
+                checksList.innerHTML = "";
+
+                for (var i = 0, l = checks.length; i < l; i++) {
+                    var li = doc.createElement("li"),
+                        title = doc.createElement("h2"),
+                        message = doc.createElement("p");
+
+                    title.innerHTML = checks[i].name;
+                    li.appendChild(title);
+
+                    message.innerHTML = checks[i].message;
+                    li.appendChild(message);
+
+                    checksList.appendChild(li);
+                }
+            };
+
+            // Setup the HSIMP object
+            var attachTo = hsimp({
+                options: {
+                    calculationsPerSecond: 10e9, // 10 billion calculations per second
+                    good: 31557600e9, // 1 billion years
+                    ok: 31557600e3 // 1 thousand years
+                },
+                outputTime: renderTime,
+                outputChecks: renderChecks
+            });
+
+            // setup custom values for "instantly"/"forever"
+            hsimp.setDictionary({
+                "instantly": "Immediately",
+                "forever": "Aaaaaaaaaaaaaaaages",
+            });
+
+            // Run the HSIMP
+            attachTo(passwordInput);
+        }(this.document));
+    </script>
+
+
+</html>
