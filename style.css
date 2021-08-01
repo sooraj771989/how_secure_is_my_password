@@ -34,9 +34,7 @@ label::after {
     content: ":";
 }
 .title {
-  font-size: 5em;
-  line-height: .4444444444em;
-  padding-top: .4444444444em;
+  font-size: 4em;
 }
 
 .text-center{
